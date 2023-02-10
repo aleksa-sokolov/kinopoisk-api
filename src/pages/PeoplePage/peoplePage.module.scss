@@ -1,0 +1,185 @@
+.wrapper {
+  display: flex;
+  margin: 40px auto 0;
+
+  .people__img {
+    max-height: 450px;
+    margin-right: 40px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    img {
+      width: 300px;
+      height: 450px;
+      overflow: hidden;
+      margin-bottom: -10px;
+    }
+  }
+
+  .people__info {
+    &_name {
+      margin: 0;
+      font-size: 35px;
+      color: #dedede;
+    }
+
+    &_name_eng {
+      padding-top: 10px;
+      margin: 0;
+      color: #939393;
+    }
+
+    &_about_name {
+      margin-top: 40px;
+      font-size: 22px;
+      font-weight: 900;
+      color: #dedede;
+    }
+
+    &_lists {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+
+      .people__info_list {
+        margin-bottom: 18px;
+        color: #868686;
+
+        p {
+          width: 160px;
+          margin: 0;
+          display: inline-block;
+        }
+
+        span {
+          color: #dedede;
+        }
+      }
+    }
+  }
+}
+
+.people__facts {
+  max-width: 700px;
+  margin-bottom: 70px;
+
+  &_title {
+    margin: 60px 0 30px;
+    color: #dedede;
+  }
+
+  &_lists {
+    margin: 0;
+    padding: 0;
+
+    .people__facts_list {
+      padding-bottom: 30px;
+      padding-left: 20px;
+      list-style: none;
+      position: relative;
+      color: #dedede;
+
+      &:before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #fff;
+        position: absolute;
+        left: 0;
+        top: 7px;
+      }
+
+      &:after {
+        content: "";
+        width: 100%;
+        height: 1px;
+        background-color: #585656;
+        position: absolute;
+        bottom: 15px;
+        left: 0;
+        right: 0;
+      }
+
+      &:last-child:after {
+        background-color: inherit;
+      }
+    }
+  }
+
+  &_btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 25px 9px 40px;
+    background-color: #EAEAEA;
+    position: relative;
+    border: none;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #3d3d3d;
+    letter-spacing: 0.02em;
+
+    svg {
+      position: absolute;
+      left: 20px;
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  &_btn_none {
+    display: none;
+  }
+}
+
+.people__films {
+  margin-bottom: 70px;
+  &_title {
+    margin: 60px 0 30px;
+    font-size: 24px;
+    color: #dedede;
+  }
+
+  &_wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    &_link {
+      display: flex;
+      justify-content: space-between;
+      width: 60%;
+      margin-bottom: 15px;
+      padding: 10px 20px;
+      border-radius: 2px;
+      text-decoration: none;
+      background-color: #EAEAEA;
+      &_name {
+        margin: 0;
+        font-size: 16px;
+        color: #000;
+      }
+      &_rating {
+        margin: 0;
+        background-color: #595757;
+        padding: 2px 3px;
+        border-radius: 5px;
+        span {
+          font-size: 13px;
+          color: #FFFFFF;
+        }
+      }
+      &_rating_green {
+        background-color: #3bb33b;
+      }
+      &__rating_yellow {
+        background-color: #ecc723;
+      }
+      &__rating_red {
+        background-color: #a81313;
+      }
+    }
+  }
+}
