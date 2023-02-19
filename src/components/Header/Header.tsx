@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { AxiosResponse } from 'axios';
 import { useMediaQuery } from 'usehooks-ts';
 import { useRouter } from 'next/router';
 import MobileBurger from '../MobileBurger/MobileHeader';
@@ -7,13 +8,12 @@ import MobileMenu from '../MobileMenu/MobileMenu';
 import Settings from '../Settings/Settings';
 import { useActions } from '@/hooks/useAction';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
+import { getHttpSearch } from '../../http';
 import { Input } from 'antd';
-import { ISearchFilm } from '@/types/ISearch';
+import { ISearch, ISearchFilm } from '@/types/ISearch';
 import styles from './header.module.scss';
-import { getFilmsService } from '@/services/filmsService';
 
 const { Search } = Input;
-
 const Header: FunctionComponent = () => {
   const matches = useMediaQuery('(max-width: 940px)');
   const router = useRouter();
@@ -34,10 +34,15 @@ const Header: FunctionComponent = () => {
   }
 
   async function getHttpResultFilm() {
-    const { data } = await getFilmsService.getHttpSearch({ keyword: nameRu });
+    const { data }: AxiosResponse<ISearch> = await getHttpSearch('search-by-keyword', {
+      params: {
+        keyword: nameRu,
+      },
+    });
     setResultFilm(data.films);
     return data;
   }
+
 
   useEffect(() => {
     if (nameRu) {
@@ -46,6 +51,7 @@ const Header: FunctionComponent = () => {
   }, [nameRu]);
 
   return (
+
     <header className={styles.header}>
       <div className='container'>
         <div className={styles.header__wrapper}>
