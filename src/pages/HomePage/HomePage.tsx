@@ -1,83 +1,87 @@
-import React, {FC, useEffect, useState} from 'react';
-import {AxiosResponse} from "axios";
+import React, { FC, useEffect, useState } from 'react';
+import Film from '../../components/Film/Film';
+import { useTypedSelector } from '@/hooks/useTypedSelector';
+import { IFilm, IPropsFilms } from '@/types/IFilm';
+import InfiniteScroll from 'react-infinite-scroller';
+import FilmSkeleton from '@/components/ui/FilmSkeleton/FilmSkeleton';
+import { useActions } from '@/hooks/useAction';
+import { filmsService } from '@/services/filmsService';
 
-import Film from "../../components/Film/Film";
-import {useTypedSelector} from "@/hooks/useTypedSelector";
-import {http} from "../../http";
-import {IFilm, IHomePageFilms, IPropsFilms} from "@/types/IFilm";
-import InfiniteScroll from "react-infinite-scroller";
-import {Skeleton} from "@/components/ui/Skeletons/Skeletons";
+const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
+  const [filmsState, setFilmsState] = useState<IFilm[]>(films);
+  const {
+    typeFilm,
+    yearFilmFrom,
+    yearFilmTo,
+    minRatingFilm,
+    maxRatingFilm,
+    pages,
+  } = useTypedSelector(state => state.filter);
+  const { setPageFilm } = useActions();
+  const [loading, setLoading] = useState<boolean>(false);
 
-
-const HomePage: FC<IPropsFilms> = ({films}) => {
-    const [filmsState, setFilmsState] = useState<IFilm[]>(films);
-    const {typeFilm, yearFilmFrom, yearFilmTo, minRatingFilm, maxRatingFilm} = useTypedSelector(state => state.filter);
-    const [page, setPage] = useState<number>(1);
-    const [loading, setLoading] = useState<boolean>(false)
-
-    // TODO все стейты надо типизировать!
-
-    async function getFilms() {
-        setLoading(true)
-        const {data}: AxiosResponse<IHomePageFilms> = await http.get(`/films`, {
-            params: {
-                order: "RATING",
-                type: typeFilm,
-                ratingFrom: minRatingFilm,
-                ratingTo: maxRatingFilm,
-                yearFrom: yearFilmFrom,
-                yearTo: yearFilmTo,
-                page
-            }
-        });
-        // У тебя было так: setFilmsState(data.items) - т.е ты брал новые фильмы и перезаписывал стейт, а надо было их добавлять к строму стейту
-        // Условно ты делал так: films = newFilms, а надо так: films.concat(newFilms)
-        setFilmsState([...filmsState, ...data.items]);
-        setLoading(false)
+  async function getFilms() {
+    setLoading(true);
+    const { data } = await filmsService.getFilms({
+      order: 'RATING',
+      type: typeFilm,
+      ratingFrom: minRatingFilm,
+      ratingTo: maxRatingFilm,
+      yearFrom: yearFilmFrom,
+      yearTo: yearFilmTo,
+      pages,
+    });
+    setFilmsState([...filmsState, ...data.items]);
+    setLoading(false);
+  }
+  function loadMore() {
+    if (!loading && filmsState.length) {
+      if (totalPages < pages) {
+        return;
+      }
+      setPageFilm(pages + 1);
+      getFilms();
     }
+  }
 
-    function loadMore() {
-        getFilms();
+  useEffect(() => {
+    if (pages !== 1) {
+      getFilms();
     }
+    if (typeFilm !== 'ALL') {
+      setPageFilm(1);
+      setFilmsState([]);
+      getFilms();
+    }
+  }, [minRatingFilm, maxRatingFilm, typeFilm, yearFilmTo, yearFilmFrom]);
 
-
-    useEffect(() => {
-        if (page !== 1) {
-            getFilms();
-        }
-    }, [minRatingFilm, maxRatingFilm, typeFilm, yearFilmTo, yearFilmFrom]);
-
-    return (
-        <div className="container">
-            <InfiniteScroll
-                pageStart={0}
-                hasMore={true}
-                loadMore={loadMore}
-                useWindow={true}
-                threshold={300}
-            >
-                <div className="wrap__films">
-                    {filmsState.map(film => (
-                        <Film key={film.kinopoiskId} film={film}/>
-                    ))}
-
-
-                    {/*Loading (сделай ток по-нормальному) при подгрузке фильмов*/}
-                    {loading ?
-                        <>
-                            <Skeleton/>
-                            <Skeleton/>
-                            <Skeleton/>
-                            <Skeleton/>
-                            <Skeleton/>
-                        </>
-                        :
-                        <></>
-                    }
-                </div>
-            </InfiniteScroll>
+  return (
+    <div className='container'>
+      <InfiniteScroll
+        pageStart={0}
+        initialLoad={false}
+        hasMore={true}
+        loadMore={loadMore}
+        useWindow={true}
+        threshold={0.5}
+      >
+        <div className='wrap__films'>
+          {filmsState.map((film, index) => (
+            <Film key={index} film={film} />
+          ))}
+          {loading ?
+            <>
+              {[...new Array(20)].map((_, index) => (
+                <FilmSkeleton key={index} />
+              ))}
+            </>
+            :
+            <></>
+          }
         </div>
-    );
+      </InfiniteScroll>
+    </div>
+  );
 };
 
 export default HomePage;

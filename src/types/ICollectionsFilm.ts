@@ -1,5 +1,5 @@
-import {IFilm} from "./IFilm";
+import { IFilm } from './IFilm';
 
 export type ICollectionsFilm = {
-    favoriteCollection: IFilm[]
+  favoriteCollection: IFilm[]
 }

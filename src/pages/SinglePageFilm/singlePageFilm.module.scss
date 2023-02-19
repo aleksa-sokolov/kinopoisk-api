@@ -39,12 +39,9 @@
     @include max-custom(1150px) {
       max-width: 600px;
     }
-
     @include max-custom(950px) {
       max-width: 500px;
     }
-
-
     &_top {
       display: flex;
       align-items: center;
@@ -75,7 +72,6 @@
             margin-right: 10px;
           }
         }
-
         &_lists {
           margin: 10px 0;
           padding-left: 0;
@@ -156,6 +152,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: 20px 0;
+
     .feedbacks__review {
       margin-top: 5px;
       margin-bottom: 5px;

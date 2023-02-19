@@ -1,8 +1,8 @@
-import {IFilm} from "./IFilm";
+import { IFilm } from './IFilm';
 
 export type ISimilarFilms = {
-    items: IFilm[],
-    total: number
+  items: IFilm[],
+  total: number
 }
 
 

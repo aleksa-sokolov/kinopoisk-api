@@ -1,7 +1,7 @@
-import CollectionFilms from "../src/pages/CollectionFilms/CollectionFilms";
+import CollectionFilms from '../src/pages/CollectionFilms/CollectionFilms';
 
 const Collections = () => {
-    return <CollectionFilms/>
+  return <CollectionFilms />;
 };
 
 export default Collections;

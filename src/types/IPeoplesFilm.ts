@@ -1,9 +1,8 @@
-
-export interface IPeoplesFilm  {
-    nameRu: string,
-    postUrl: string,
-    professionKey: string,
-    professionText: string,
-    staffId: number,
+export interface IPeoplesFilm {
+  nameRu: string,
+  postUrl: string,
+  professionKey: string,
+  professionText: string,
+  staffId: number,
 }
 

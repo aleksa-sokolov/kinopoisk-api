@@ -16,6 +16,20 @@
       }
     }
 
+    &__subtitle {
+      color: #f3f3f3;
+      span {
+        margin-left: 10px;
+        color: #22A39F;
+      }
+    }
+
+    &__img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+    }
+
     .similarFilm {
       width: 190px!important;
       height: 260px;
@@ -36,6 +50,7 @@
         font-size: 15px;
         color: #3d7ed3;
       }
+
     }
   }
 }

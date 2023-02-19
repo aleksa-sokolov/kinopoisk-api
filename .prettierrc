@@ -1,0 +1,23 @@
+{
+  "printWidth": 100,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^@/api/(.*)$",
+    "^@/components/(.*)$",
+    "^@/helpers/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/pages/(.*)$",
+    "^@/services/(.*)$",
+    "^@/store/(.*)$",
+    "^@/theme/(.*)$",
+    "^@/types/(.*)$",
+    "^../(.*)",
+    "^./(.*)",
+    "(.scss)$",
+    "(.css)$"
+  ],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true
+}
