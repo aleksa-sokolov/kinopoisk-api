@@ -5,5 +5,5 @@ export interface IGetFilmsParams {
   ratingTo: number,
   yearFrom: number,
   yearTo: number,
-  pages: number,
+  page: number,
 }

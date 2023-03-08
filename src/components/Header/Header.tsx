@@ -44,6 +44,7 @@ const Header: FunctionComponent = () => {
     return data;
   }
 
+
   useEffect(() => {
     if (nameRu) {
       getHttpResultFilm();

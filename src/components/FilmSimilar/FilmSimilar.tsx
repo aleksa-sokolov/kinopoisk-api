@@ -65,7 +65,10 @@ const FilmSimilar: FC<ISimilarFilms> = (filmSimilar) => {
               Нет похожих фильмов
               <span> (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</span>
             </p>
-            <img
+            <Image
+              unoptimized
+              width={400}
+              height={326}
               className={styles.similarFilms__img}
               src='/images/no-god-no-god-please-no.gif' alt='alt'
             />

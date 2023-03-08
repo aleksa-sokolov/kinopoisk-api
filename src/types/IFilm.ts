@@ -22,7 +22,7 @@ export interface IFilm {
   filmId?: number,
   ratingAgeLimits: number,
   slogan: string
-  films: any
+  films: any,
 }
 
 export type IGenres = {
@@ -57,6 +57,8 @@ export type IHomePageFilms = {
 }
 
 export type PropsFilm = {
-  films: IFilm,
-  isCollectionFilm?: boolean
+  film?: IFilm | any,
+  films?: IFilm | any,
+  isCollectionFilm?: boolean,
+  key?: number | undefined
 }
