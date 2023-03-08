@@ -63,25 +63,25 @@ const PeoplePage: FC<IPeopleResponse> = ({ people }) => {
           <p className={styles.people__info_about_name}>
             О персоне
           </p>
-          {/*<ul className={styles.people__info_lists}>*/}
-          {/*  <li className={styles.people__info_list}>*/}
-          {/*    <p>Карьера</p><span>{people.profession}</span>*/}
-          {/*  </li>*/}
-          {/*  <li className={styles.people__info_list}>*/}
-          {/*    <p>Рост</p><span>{people.growth} см</span>*/}
-          {/*  </li>*/}
-          {/*  <li className={styles.people__info_list}>*/}
-          {/*    <p>Дата рождения</p>*/}
-          {/*    <span>{people.birthday}, {people.age} лет</span></li>*/}
-          {/*  <li className={styles.people__info_list}>*/}
-          {/*    <p>Место рождения</p><span>{people.birthplace}</span>*/}
-          {/*  </li>*/}
-          {/*  <li className={styles.people__info_list}><p>Партнеры</p>{people.spouses.map(spouse => (*/}
-          {/*    <span> {spouse.name} </span>))}</li>*/}
-          {/*  <li className={styles.people__info_list}>*/}
-          {/*    <p>Всего фильмов</p><span>{people.films.length}</span>*/}
-          {/*  </li>*/}
-          {/*</ul>*/}
+          <ul className={styles.people__info_lists}>
+            <li className={styles.people__info_list}>
+              <p>Карьера</p><span>{people.profession}</span>
+            </li>
+            <li className={styles.people__info_list}>
+              <p>Рост</p><span>{people.growth} см</span>
+            </li>
+            <li className={styles.people__info_list}>
+              <p>Дата рождения</p>
+              <span>{people.birthday}, {people.age} лет</span></li>
+            <li className={styles.people__info_list}>
+              <p>Место рождения</p><span>{people.birthplace}</span>
+            </li>
+            <li className={styles.people__info_list}><p>Партнеры</p>{people.spouses.map(spouse => (
+              <span> {spouse.name} </span>))}</li>
+            <li className={styles.people__info_list}>
+              <p>Всего фильмов</p><span>{people.films.length}</span>
+            </li>
+          </ul>
         </div>
       </div>
       <div className={styles.people__facts}>
