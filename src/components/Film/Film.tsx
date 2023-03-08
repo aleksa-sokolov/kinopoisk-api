@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { PropsFilm } from '@/types/IFilm';
 import { FiX } from 'react-icons/fi';
 import { useActions } from '@/hooks/useAction';
@@ -20,7 +21,7 @@ const Film: FC<PropsFilm> = ({ film, isCollectionFilm }) => {
 
   return (
     <Link href={`film/${film.filmId ? film.filmId : film.kinopoiskId}`} className={styles.card}>
-      <img className={styles.card__img} src={film.posterUrl} alt={film.nameRu} />
+      <Image unoptimized width={230} height={336} className={styles.card__img} src={film.posterUrl} alt={film.nameRu} />
       <span
         style={isCollectionFilm ? {} : style} className={styles.card__rating}
       >

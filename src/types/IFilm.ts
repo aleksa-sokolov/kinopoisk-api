@@ -22,6 +22,7 @@ export interface IFilm {
   filmId?: number,
   ratingAgeLimits: number,
   slogan: string
+  films: any
 }
 
 export type IGenres = {
@@ -56,6 +57,6 @@ export type IHomePageFilms = {
 }
 
 export type PropsFilm = {
-  film: IFilm,
+  films: IFilm,
   isCollectionFilm?: boolean
 }

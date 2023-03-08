@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { PropsFilms } from '../../../pages/films';
 import Film from '../Film/Film';
 import styles from './films.module.scss';
+import { PropsFilm } from '@/types/IFilm';
 
-const Films: FC<PropsFilms> = ({ films }) => {
+const Films: FC<PropsFilm> = ({ films }) => {
   let filmItems = films.films;
   return (
     <div className={styles.cards}>

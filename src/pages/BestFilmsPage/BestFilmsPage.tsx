@@ -50,7 +50,7 @@ const BestFilmsPage: FC<IPropsFilms> = ({ films, totalPages }, pageUrl) => {
         hasMore={true}
         loadMore={loadMore}
         useWindow={true}
-        threshold={0.5}
+        threshold={500}
       >
         <div className='wrap__films'>
           {filmsState?.map((film: IFilm) => <Film key={film.filmId} film={film} />)}

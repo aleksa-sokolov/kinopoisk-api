@@ -9,6 +9,8 @@ import { filmsService } from '@/services/filmsService';
 
 const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
   const [filmsState, setFilmsState] = useState<IFilm[]>(films);
+  console.log(filmsState);
+  window.history.pushState(films, '', `http://localhost:3000/`);
   const {
     typeFilm,
     yearFilmFrom,
@@ -29,13 +31,15 @@ const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
       ratingTo: maxRatingFilm,
       yearFrom: yearFilmFrom,
       yearTo: yearFilmTo,
-      pages,
+      page: pages,
     });
     setFilmsState([...filmsState, ...data.items]);
     setLoading(false);
   }
+
   function loadMore() {
     if (!loading && filmsState.length) {
+      // hasMore
       if (totalPages < pages) {
         return;
       }
@@ -45,9 +49,10 @@ const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
   }
 
   useEffect(() => {
-    if (pages !== 1) {
+    if (pages !== 2) {
       getFilms();
     }
+    // redux let isFilter
     if (typeFilm !== 'ALL') {
       setPageFilm(1);
       setFilmsState([]);
@@ -63,7 +68,7 @@ const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
         hasMore={true}
         loadMore={loadMore}
         useWindow={true}
-        threshold={0.5}
+        threshold={300}
       >
         <div className='wrap__films'>
           {filmsState.map((film, index) => (

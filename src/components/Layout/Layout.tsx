@@ -1,5 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import Header from '../Header/Header';
+import Footer from '@/components/Footer/Footer';
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -8,6 +9,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
       <main>
         {children}
       </main>
+      <Footer/>
     </>
   );
 };

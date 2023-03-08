@@ -12,6 +12,7 @@ import { getHttpSearch } from '../../http';
 import { Input } from 'antd';
 import { ISearch, ISearchFilm } from '@/types/ISearch';
 import styles from './header.module.scss';
+import Image from 'next/image';
 
 const { Search } = Input;
 const Header: FunctionComponent = () => {
@@ -43,7 +44,6 @@ const Header: FunctionComponent = () => {
     return data;
   }
 
-
   useEffect(() => {
     if (nameRu) {
       getHttpResultFilm();
@@ -51,7 +51,6 @@ const Header: FunctionComponent = () => {
   }, [nameRu]);
 
   return (
-
     <header className={styles.header}>
       <div className='container'>
         <div className={styles.header__wrapper}>
@@ -77,10 +76,16 @@ const Header: FunctionComponent = () => {
                   <Link
                     onClick={() => setResultFilm([])}
                     className={styles.header__search_result_link}
-                    href={`film/${film.filmId ? film.filmId : film.kinopoiskId}`}
+                    href={`/film/${film.filmId ? film.filmId : film.kinopoiskId}`}
                   >
                     <div className={styles.header__search_result_link_img}>
-                      <img src={film.posterUrl} alt={film.nameRu} />
+                      <Image
+                        unoptimized
+                        width={48}
+                        height={70}
+                        src={film.posterUrl}
+                        alt={film.nameRu}
+                      />
                     </div>
                     {film.nameRu}
                   </Link>

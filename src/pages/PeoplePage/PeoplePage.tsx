@@ -7,12 +7,12 @@ import Link from 'next/link';
 
 
 const PeoplePage: FC<IPeopleResponse> = ({ people }) => {
-  const [show, setShow] = useState(true);
-  const [showFilm, setShowFilm] = useState(false);
-  const [countFilm, setCountFilm] = useState(10);
+  const [showFacts, setShowFacts] = useState<boolean>(true);
+  const [showFilms, setShowsFilm] = useState<boolean>(true);
+  const [countFilm, setCountFilm] = useState<number>(10);
 
   function showMoreFacts(arr: string[]) {
-    if (show) {
+    if (showFacts) {
       return arr.slice(0, 3).map((item, index) => (
         <li className={styles.people__facts_list} key={index}>{item}</li>
       ));
@@ -21,9 +21,8 @@ const PeoplePage: FC<IPeopleResponse> = ({ people }) => {
       <li className={styles.people__facts_list} key={index}>{item}</li>
     ));
   }
-
   function showMoreFilms(arr: IFilmActor[]) {
-    if (show) {
+    if (showFilms) {
       return arr.filter((film: IFilmActor, index, self) => film.nameRu && film.rating).slice(0, countFilm).map((item: IFilmActor, index) => (
         <Link key={index} className={styles.people__films_wrap_link} href={`/film/${item.filmId}`}>
           <p className={styles.people__films_wrap_link_name}>{item.nameRu}</p>
@@ -71,12 +70,13 @@ const PeoplePage: FC<IPeopleResponse> = ({ people }) => {
           {showMoreFacts(people.facts)}
         </ul>
         <button
-          onClick={() => setShow(false)}
-          className={show ? styles.people__facts_btn : clsx(styles.people__facts_btn, styles.people__facts_btn_none)}
+          onClick={() => setShowFacts(false)}
+          className={showFacts ? styles.people__facts_btn : clsx(styles.people__facts_btn, styles.people__facts_btn_none)}
         >
           <AiOutlineDown />Показать еще
         </button>
       </div>
+
       <div className={styles.people__films}>
         <h3 className={styles.people__films_title}>Фильмы с участием <span>{people.nameRu}</span></h3>
         <div className={styles.people__films_wrap}>
@@ -84,11 +84,11 @@ const PeoplePage: FC<IPeopleResponse> = ({ people }) => {
         </div>
         <button
           onClick={() => {
-            setShowFilm(false);
+            // setShowsFilm(false);
             setCountFilm(countFilm + 10);
           }}
           className={
-            !showFilm ? styles.people__films_btn : clsx(styles.people__films_btn, styles.people__films_btn_none)
+            showFilms ? styles.people__films_btn : clsx(styles.people__films_btn, styles.people__films_btn_none)
           }
         >
           <AiOutlineDown />Показать еще

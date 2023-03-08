@@ -4,9 +4,9 @@ const initialState: IFilterState = {
   typeFilm: 'ALL',
   yearFilmFrom: 1990,
   yearFilmTo: 2023,
-  minRatingFilm: 0,
+  minRatingFilm: 1,
   maxRatingFilm: 10,
-  pages: 1,
+  pages: 2,
 };
 
 interface IFilterState {
