@@ -11,34 +11,51 @@ import { determinateType } from '../../../pages/films';
 import { useRouter } from 'next/router';
 
 
-const BestFilmsPage: FC<IPropsFilms> = ({ films, totalPages }, pageUrl) => {
+const BestFilmsPage: FC<IPropsFilms> = ({ films, pagesCount, pageUrl }) => {
   const router = useRouter();
   const [filmsState, setFilmsState] = useState<IFilm[]>(films);
   const [loading, setLoading] = useState<boolean>(false);
-  const { pages } = useTypedSelector(state => state.filter);
+  const { pageBestFilm } = useTypedSelector(state => state.filter);
+  const { pagePopularFilm } = useTypedSelector(state => state.filter);
   const urlName = determinateType(pageUrl);
-  const { setPageFilm } = useActions();
+  const { setPageBestFilm, setPagePopularFilm } = useActions();
 
   useEffect(() => {
     setFilmsState(films);
   }, [router.query]);
+
 
   async function getFilms() {
     setLoading(true);
     const { data }: AxiosResponse<IHomePageFilms> = await http.get(`/films/top`, {
       params: {
         type: urlName,
-        page: pages,
+        page: router.query.filter === 'best' ? pageBestFilm : pagePopularFilm,
       },
     });
     setFilmsState([...filmsState, ...data.films]);
     setLoading(false);
   }
 
+
   function loadMore() {
-    if (!loading && filmsState.length) {
-      setPageFilm(pages + 1);
-      getFilms();
+    if (pageUrl === 'best') {
+      if (!loading && filmsState.length) {
+        if (pagesCount <= pageBestFilm) {
+          return;
+        }
+        setPageBestFilm(pageBestFilm + 1);
+        getFilms();
+      }
+    }
+    if (pageUrl === 'popular') {
+      if (!loading && filmsState.length) {
+        if (pagesCount <= pagePopularFilm) {
+          return;
+        }
+        setPagePopularFilm(pagePopularFilm + 1);
+        getFilms();
+      }
     }
   }
 
@@ -50,7 +67,7 @@ const BestFilmsPage: FC<IPropsFilms> = ({ films, totalPages }, pageUrl) => {
         hasMore={true}
         loadMore={loadMore}
         useWindow={true}
-        threshold={500}
+        threshold={200}
       >
         <div className='wrap__films'>
           {filmsState?.map((film: IFilm) => <Film key={film.filmId} film={film} />)}

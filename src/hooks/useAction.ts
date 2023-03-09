@@ -7,6 +7,8 @@ import {
   setMinRatingFilm,
   setMaxRatingFilm,
   setPageFilm,
+  setPageBestFilm,
+  setPagePopularFilm
 } from '@/store/slices/filterSlice';
 import { setSearchFilm } from '@/store/slices/searchSlice';
 import { AddCollectionFilm, removeCollectionFilm } from '@/store/slices/collectionSlice';
@@ -23,5 +25,7 @@ export const useActions = () => {
     AddCollectionFilm,
     removeCollectionFilm,
     setPageFilm,
+    setPageBestFilm,
+    setPagePopularFilm
   }, dispatch);
 };

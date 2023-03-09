@@ -52,7 +52,7 @@ const Settings: FC = () => {
             <Space wrap className={styles.settings__subtitle_options}>
               Тип
               <Select
-                defaultValue='FILM'
+                defaultValue='ALL'
                 style={{ width: 120 }}
                 onChange={changeTypeHandler}
                 options={[
@@ -90,7 +90,7 @@ const Settings: FC = () => {
             <Space wrap className={styles.settings__subtitle_options}>
               Мин.рейтинг
               <Select
-                defaultValue={5}
+                defaultValue={1}
                 style={{ width: 120 }}
                 onChange={handleChangeMinRatingFilm}
                 options={filmRating}
@@ -101,7 +101,7 @@ const Settings: FC = () => {
             <Space wrap className={styles.settings__subtitle_options}>
               Макс.рейтинг
               <Select
-                defaultValue={10}
+                defaultValue={9}
                 style={{ width: 120 }}
                 onChange={handleChangeMaxRatingFilm}
                 options={filmRating}

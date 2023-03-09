@@ -4,9 +4,11 @@ const initialState: IFilterState = {
   typeFilm: 'ALL',
   yearFilmFrom: 1990,
   yearFilmTo: 2023,
-  minRatingFilm: 1,
-  maxRatingFilm: 10,
-  pages: 2,
+  minRatingFilm: 0,
+  maxRatingFilm: 9,
+  pageBestFilm: 1,
+  pagePopularFilm: 1,
+  page: 1
 };
 
 interface IFilterState {
@@ -15,7 +17,9 @@ interface IFilterState {
   yearFilmTo: number,
   minRatingFilm: RatingFilmTypes,
   maxRatingFilm: RatingFilmTypes,
-  pages: number
+  pageBestFilm: number,
+  pagePopularFilm: number
+  page: number
 }
 
 export type FilmTypes = 'ALL' | 'FILM' | 'TV_SHOW' | 'TV_SERIES' | 'MINI_SERIAL';
@@ -41,8 +45,14 @@ export const filterSlice = createSlice({
     setMaxRatingFilm: (state, action: PayloadAction<RatingFilmTypes>) => {
       state.maxRatingFilm = action.payload;
     },
+    setPageBestFilm: (state, action: PayloadAction<number>) => {
+      state.pageBestFilm = action.payload;
+    },
+    setPagePopularFilm: (state, action: PayloadAction<number>) => {
+      state.pagePopularFilm = action.payload;
+    },
     setPageFilm: (state, action: PayloadAction<number>) => {
-      state.pages = action.payload;
+      state.pagePopularFilm = action.payload;
     },
   },
 });
@@ -55,6 +65,8 @@ export const {
   setMinRatingFilm,
   setMaxRatingFilm,
   setPageFilm,
+  setPageBestFilm,
+  setPagePopularFilm,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

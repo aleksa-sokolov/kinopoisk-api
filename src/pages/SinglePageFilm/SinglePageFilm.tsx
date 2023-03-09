@@ -54,7 +54,7 @@ const SinglePageFilm: FC<ISingleFilmResponse> = ({ film, peoplesRelatedToTheFilm
     <div className='container'>
       <div className={styles.film__wrapper}>
         <div className={styles.film__wrapper_img}>
-          <img src={film.posterUrl} alt='' />
+          <img src={film.posterUrl} alt={film.nameRu} />
         </div>
         <div className={styles.film__info}>
           <div className={styles.film__info_top}>

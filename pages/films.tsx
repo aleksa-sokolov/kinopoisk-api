@@ -3,6 +3,7 @@ import { http } from '../src/http';
 import BestFilmsPage from '../src/pages/BestFilmsPage/BestFilmsPage';
 import { IPropsBestFilms, IPropsFilms } from '@/types/IFilm';
 import { GetServerSidePropsResult } from 'next';
+import { useEffect } from 'react';
 
 
 export async function getServerSideProps(ctx: any): Promise<GetServerSidePropsResult<IPropsBestFilms>> {
@@ -16,6 +17,7 @@ export async function getServerSideProps(ctx: any): Promise<GetServerSidePropsRe
     props: {
       films: data.films,
       pageUrl: ctx.query?.filter,
+      pagesCount: data.pagesCount,
     },
   };
 }

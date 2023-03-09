@@ -9,14 +9,14 @@ import { filmsService } from '@/services/filmsService';
 
 const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
   const [filmsState, setFilmsState] = useState<IFilm[]>(films);
-  window.history.pushState(films, '', `http://localhost:3000/`);
+  window.history.pushState(films, '', `https://kinopoisk-beryl.vercel.app/`);
   const {
     typeFilm,
     yearFilmFrom,
     yearFilmTo,
     minRatingFilm,
     maxRatingFilm,
-    pages,
+    page,
   } = useTypedSelector(state => state.filter);
   const { setPageFilm } = useActions();
   const [loading, setLoading] = useState<boolean>(false);
@@ -30,7 +30,7 @@ const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
       ratingTo: maxRatingFilm,
       yearFrom: yearFilmFrom,
       yearTo: yearFilmTo,
-      page: pages,
+      page: page,
     });
     setFilmsState([...filmsState, ...data.items]);
     setLoading(false);
@@ -38,23 +38,25 @@ const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
 
   function loadMore() {
     if (!loading && filmsState.length) {
-      // hasMore
-      if (totalPages < pages) {
+      if (totalPages < page) {
         return;
       }
-      setPageFilm(pages + 1);
+      setPageFilm(page + 1);
       getFilms();
     }
   }
 
+
   useEffect(() => {
-    if (pages !== 2) {
+    if (page !== 1) {
+      setFilmsState([]);
+      setFilmsState(filmsState.splice(0, 20));
       getFilms();
     }
-    // redux let isFilter
-    if (typeFilm !== 'ALL') {
-      setPageFilm(1);
+    if (typeFilm !== 'ALL' || minRatingFilm !== 0 || maxRatingFilm !== 9 || yearFilmTo !== 2023 || yearFilmFrom !== 1990) {
       setFilmsState([]);
+      setFilmsState(filmsState.splice(0, 20));
+      setPageFilm(1);
       getFilms();
     }
   }, [minRatingFilm, maxRatingFilm, typeFilm, yearFilmTo, yearFilmFrom]);
@@ -67,7 +69,7 @@ const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
         hasMore={true}
         loadMore={loadMore}
         useWindow={true}
-        threshold={300}
+        threshold={100}
       >
         <div className='wrap__films'>
           {filmsState.map((film, index) => (

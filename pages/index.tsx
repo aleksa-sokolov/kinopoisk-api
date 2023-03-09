@@ -4,7 +4,7 @@ import HomePage from '../src/pages/HomePage/HomePage';
 import { IHomePageFilms, IPropsFilms } from '@/types/IFilm';
 import { http } from '../src/http';
 
-export async function getServerSideProps(ctx: any): Promise<GetServerSidePropsResult<IPropsFilms>> {
+export async function getStaticProps(ctx: any): Promise<GetServerSidePropsResult<IPropsFilms>> {
   try {
     const { data }: AxiosResponse<IHomePageFilms> = await http.get(`/films`, {
       params: {

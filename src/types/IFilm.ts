@@ -42,12 +42,15 @@ export type ISingleFilmResponse = {
 
 export type IPropsFilms = {
   films: IFilm[],
-  totalPages: number
+  totalPages: number,
+  pagesCount?: number | any
+  pageUrl?: string
 }
 
 export type IPropsBestFilms = {
   films: IFilm[],
-  pageUrl: string,
+  pageUrl?: string,
+  pagesCount?: number
 }
 
 export type IHomePageFilms = {
