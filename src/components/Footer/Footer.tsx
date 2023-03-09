@@ -5,7 +5,7 @@ const Footer: FC = () => {
   return (
     <footer className={styles.footer}>
       <div className='container'>
-        Официальный сайт - <a target='_blank' href='https://www.kinopoisk.ru'>
+        Официальный сайт - <a href='https://www.kinopoisk.ru'>
         Кинопоиск
       </a>
       </div>
