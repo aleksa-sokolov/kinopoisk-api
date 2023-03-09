@@ -9,7 +9,7 @@ import { filmsService } from '@/services/filmsService';
 
 const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
   const [filmsState, setFilmsState] = useState<IFilm[]>(films);
-  window.history.pushState(films, '', `https://kinopoisk-beryl.vercel.app/`);
+  window.history.pushState(films, '', `http://localhost:3000/`);
   const {
     typeFilm,
     yearFilmFrom,
@@ -17,8 +17,9 @@ const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
     minRatingFilm,
     maxRatingFilm,
     page,
+    startFilter,
   } = useTypedSelector(state => state.filter);
-  const { setPageFilm } = useActions();
+  const { setPageFilm, setStartFilter } = useActions();
   const [loading, setLoading] = useState<boolean>(false);
 
   async function getFilms() {
@@ -32,8 +33,14 @@ const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
       yearTo: yearFilmTo,
       page: page,
     });
-    setFilmsState([...filmsState, ...data.items]);
+    if (startFilter) {
+      setFilmsState(data.items);
+    } else {
+      setFilmsState([...filmsState, ...data.items]);
+    }
     setLoading(false);
+    setStartFilter(false);
+    setPageFilm(page + 1);
   }
 
   function loadMore() {
@@ -41,25 +48,24 @@ const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
       if (totalPages < page) {
         return;
       }
-      setPageFilm(page + 1);
+      // setPageFilm(page + 1);
       getFilms();
     }
   }
 
 
   useEffect(() => {
-    if (page !== 1) {
-      setFilmsState([]);
-      setFilmsState(filmsState.splice(0, 20));
+    // if (page !== 2) {
+    //   setFilmsState([]);
+    //   setFilmsState(filmsState.splice(0, 20));
+    //   getFilms();
+    // }
+    if (startFilter) {
+      // setFilmsState([]);
+      // setFilmsState(filmsState.splice(0, 20));
       getFilms();
     }
-    if (typeFilm !== 'ALL' || minRatingFilm !== 0 || maxRatingFilm !== 9 || yearFilmTo !== 2023 || yearFilmFrom !== 1990) {
-      setFilmsState([]);
-      setFilmsState(filmsState.splice(0, 20));
-      setPageFilm(1);
-      getFilms();
-    }
-  }, [minRatingFilm, maxRatingFilm, typeFilm, yearFilmTo, yearFilmFrom]);
+  }, [startFilter]);
 
   return (
     <div className='container'>

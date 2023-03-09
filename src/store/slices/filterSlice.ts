@@ -8,7 +8,8 @@ const initialState: IFilterState = {
   maxRatingFilm: 9,
   pageBestFilm: 1,
   pagePopularFilm: 1,
-  page: 1
+  page: 2,
+  startFilter: false,
 };
 
 interface IFilterState {
@@ -19,7 +20,8 @@ interface IFilterState {
   maxRatingFilm: RatingFilmTypes,
   pageBestFilm: number,
   pagePopularFilm: number
-  page: number
+  page: number,
+  startFilter: boolean
 }
 
 export type FilmTypes = 'ALL' | 'FILM' | 'TV_SHOW' | 'TV_SERIES' | 'MINI_SERIAL';
@@ -32,18 +34,28 @@ export const filterSlice = createSlice({
   reducers: {
     setTypeFilm: (state, action: PayloadAction<FilmTypes>) => {
       state.typeFilm = action.payload;
+      state.page = 1;
+      state.startFilter = true;
     },
     setYearFilmFrom: (state, action: PayloadAction<number>) => {
       state.yearFilmFrom = action.payload;
+      state.page = 1;
+      state.startFilter = true;
     },
     setYearFilmTo: (state, action: PayloadAction<number>) => {
       state.yearFilmTo = action.payload;
+      state.page = 1;
+      state.startFilter = true;
     },
     setMinRatingFilm: (state, action: PayloadAction<RatingFilmTypes>) => {
       state.minRatingFilm = action.payload;
+      state.page = 1;
+      state.startFilter = true;
     },
     setMaxRatingFilm: (state, action: PayloadAction<RatingFilmTypes>) => {
       state.maxRatingFilm = action.payload;
+      state.page = 1;
+      state.startFilter = true;
     },
     setPageBestFilm: (state, action: PayloadAction<number>) => {
       state.pageBestFilm = action.payload;
@@ -52,7 +64,10 @@ export const filterSlice = createSlice({
       state.pagePopularFilm = action.payload;
     },
     setPageFilm: (state, action: PayloadAction<number>) => {
-      state.pagePopularFilm = action.payload;
+      state.page = action.payload;
+    },
+    setStartFilter: (state, action: PayloadAction<boolean>) => {
+      state.startFilter = action.payload;
     },
   },
 });
@@ -67,6 +82,7 @@ export const {
   setPageFilm,
   setPageBestFilm,
   setPagePopularFilm,
+  setStartFilter
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

@@ -72,14 +72,20 @@ const PeoplePage: FC<IPeopleResponse> = ({ people }) => {
             </li>
             <li className={styles.people__info_list}>
               <p>Дата рождения</p>
-              <span>{people.birthday}, {people.age} лет</span></li>
+              <span>{people.birthday}, {people.age} лет</span>
+            </li>
             <li className={styles.people__info_list}>
               <p>Место рождения</p><span>{people.birthplace}</span>
             </li>
-            <li className={styles.people__info_list}><p>Партнеры</p>{people.spouses.map(spouse => (
-              <span> {spouse.name} </span>))}</li>
             <li className={styles.people__info_list}>
-              <p>Всего фильмов</p><span>{people.films.length}</span>
+              <p>Партнеры</p>
+              {people.spouses.map((spouse) => (
+                <span key={spouse.personId}> {spouse.name} </span>
+              ))}
+            </li>
+            <li className={styles.people__info_list}>
+              <p>Всего фильмов</p>
+              <span>{people.films.length}</span>
             </li>
           </ul>
         </div>

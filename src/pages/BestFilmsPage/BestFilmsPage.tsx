@@ -13,16 +13,16 @@ import { useRouter } from 'next/router';
 
 const BestFilmsPage: FC<IPropsFilms> = ({ films, pagesCount, pageUrl }) => {
   const router = useRouter();
-  const [filmsState, setFilmsState] = useState<IFilm[]>(films);
+  const [filmsState, setFilmsState] = useState<IFilm[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const { pageBestFilm } = useTypedSelector(state => state.filter);
-  const { pagePopularFilm } = useTypedSelector(state => state.filter);
+  const { pageBestFilm,pagePopularFilm } = useTypedSelector(state => state.filter);
   const urlName = determinateType(pageUrl);
   const { setPageBestFilm, setPagePopularFilm } = useActions();
 
   useEffect(() => {
     setFilmsState(films);
-  }, [router.query]);
+    console.log("ok");
+  }, [films,router.asPath]);
 
 
   async function getFilms() {
