@@ -15,14 +15,13 @@ const BestFilmsPage: FC<IPropsFilms> = ({ films, pagesCount, pageUrl }) => {
   const router = useRouter();
   const [filmsState, setFilmsState] = useState<IFilm[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const { pageBestFilm,pagePopularFilm } = useTypedSelector(state => state.filter);
+  const { pageBestFilm, pagePopularFilm } = useTypedSelector(state => state.filter);
   const urlName = determinateType(pageUrl);
   const { setPageBestFilm, setPagePopularFilm } = useActions();
 
   useEffect(() => {
     setFilmsState(films);
-    console.log("ok");
-  }, [films,router.asPath]);
+  }, [films, router.asPath]);
 
 
   async function getFilms() {

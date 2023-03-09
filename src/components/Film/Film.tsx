@@ -40,8 +40,12 @@ const Film: FC<PropsFilm> = ({ film, isCollectionFilm }) => {
                 }
             </span>
       <div className={styles.card__wrapper}>
-        <p className={styles.card__wrapper_name}>{film.nameRu}</p>
-        <p className={styles.card__wrapper_year}><span>Год:</span> {film.year}</p>
+        <p className={styles.card__wrapper_name}>
+          {film.nameRu}
+        </p>
+        <p className={styles.card__wrapper_year}>
+          <span>Год:</span> {film.year}
+        </p>
       </div>
     </Link>
   );

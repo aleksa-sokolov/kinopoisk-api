@@ -70,7 +70,7 @@ const FilmSimilar: FC<ISimilarFilms> = (filmSimilar) => {
               width={400}
               height={326}
               className={styles.similarFilms__img}
-              src='/images/no-god-no-god-please-no.gif' alt='alt'
+              src='/images/no-god-no-god-please-no.gif' alt="nooo Gog, no God please no,noooooo"
             />
           </> :
           <Slider {...settingsSlider}>
@@ -83,7 +83,7 @@ const FilmSimilar: FC<ISimilarFilms> = (filmSimilar) => {
                     height={260}
                     className={styles.similarFilm__img}
                     src={film.posterUrl}
-                    alt='' />
+                    alt={film.nameRu} />
                   <Link
                     href={`${film.filmId ? film.filmId : film.kinopoiskId}`}
                     className={styles.similarFilm__title}

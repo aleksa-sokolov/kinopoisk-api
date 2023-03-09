@@ -4,7 +4,11 @@ import styles from './footer.module.scss';
 const Footer: FC = () => {
   return (
     <footer className={styles.footer}>
-      Официальный сайт: <a href='https://www.kinopoisk.ru'>Кинопоиск</a>
+      <div className='container'>
+        Официальный сайт - <a target='_blank' href='https://www.kinopoisk.ru'>
+        Кинопоиск
+      </a>
+      </div>
     </footer>
   );
 };

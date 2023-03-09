@@ -48,21 +48,13 @@ const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
       if (totalPages < page) {
         return;
       }
-      // setPageFilm(page + 1);
       getFilms();
     }
   }
 
 
   useEffect(() => {
-    // if (page !== 2) {
-    //   setFilmsState([]);
-    //   setFilmsState(filmsState.splice(0, 20));
-    //   getFilms();
-    // }
     if (startFilter) {
-      // setFilmsState([]);
-      // setFilmsState(filmsState.splice(0, 20));
       getFilms();
     }
   }, [startFilter]);

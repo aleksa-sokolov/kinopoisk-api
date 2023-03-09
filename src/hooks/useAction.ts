@@ -9,7 +9,7 @@ import {
   setPageFilm,
   setPageBestFilm,
   setPagePopularFilm,
-  setStartFilter
+  setStartFilter,
 } from '@/store/slices/filterSlice';
 import { setSearchFilm } from '@/store/slices/searchSlice';
 import { AddCollectionFilm, removeCollectionFilm } from '@/store/slices/collectionSlice';
@@ -28,6 +28,6 @@ export const useActions = () => {
     setPageFilm,
     setPageBestFilm,
     setPagePopularFilm,
-    setStartFilter
+    setStartFilter,
   }, dispatch);
 };

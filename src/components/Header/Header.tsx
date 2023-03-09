@@ -98,13 +98,19 @@ const Header: FunctionComponent = () => {
             <>
               <ul className={styles.header__lists}>
                 <li className={styles.header__lists_list}>
-                  <Link href='/films?filter=best'>Лучшие</Link>
+                  <Link href='/films?filter=best'>
+                    Лучшие
+                  </Link>
                 </li>
                 <li className={styles.header__lists_list}>
-                  <Link href='/films?filter=popular'>Популярные</Link>
+                  <Link href='/films?filter=popular'>
+                    Популярные
+                  </Link>
                 </li>
                 <li className={styles.header__lists_list}>
-                  <Link href='/films?filter=await'>Ожидаемые</Link>
+                  <Link href='/films?filter=await'>
+                    Ожидаемые
+                  </Link>
                 </li>
               </ul>
               <Link href='/collections' className={styles.header__btn}>
