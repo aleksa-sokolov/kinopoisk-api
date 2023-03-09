@@ -9,7 +9,7 @@ import { filmsService } from '@/services/filmsService';
 
 const HomePage: FC<IPropsFilms> = ({ films, totalPages }) => {
   const [filmsState, setFilmsState] = useState<IFilm[]>(films);
-  window.history.pushState(films, '', `http://localhost:3000/`);
+  // window.history.pushState(films, '', `http://localhost:3000/`);
   const {
     typeFilm,
     yearFilmFrom,
